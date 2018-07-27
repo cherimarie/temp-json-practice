@@ -11,12 +11,16 @@ let neighborhood = [
   house
 ]
 
-for(let i=0; i<neighborhood.length;i++){
+function drawNeighborhood(){
   let container = document.querySelector("div#container")
-  build(neighborhood[i], container)
-  let divider = document.createElement("p")
-  divider.innerHTML = "🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲"
-  container.appendChild(divider)
+  container.innerHTML = ""
+  
+  for(let i=0; i<neighborhood.length;i++){
+    build(neighborhood[i], container)
+    let divider = document.createElement("p")
+    divider.innerHTML = "🌲🌲🌲🌲🌲🌲🌲🌲🌲🌲"
+    container.appendChild(divider)
+  }
 }
 
 function build(obj, container){
@@ -74,12 +78,26 @@ form.addEventListener("submit", function(event){
     newHasYard = newHasYard === "true"
   }
 
-  console.log(errorMessages)
+  if(errorMessages !== ""){
+    // print to page, return
+    // TODO: Print at top of form, color red
+    let p = document.createElement("p")
+    p.innerHTML = errorMessages
+    this.appendChild(p)
+    return
+  } else {
+    // TODO: clear form fields
+    // create object, put in neighborhood
+    const newHouse = {
+      exterior: newExterior,
+      roof: newRoof,
+      bedrooms: newBedrooms,
+      bathrooms: newBathrooms,
+      sqft: newSqft,
+      hasYard: newHasYard
+    }
+    neighborhood.push(newHouse)
+    drawNeighborhood()
+  }
 
 })
-
-// validate fields, numbers not negative, are numbers
-// sqft & hasYard required
-// rooms <= 5
-// default value for exterior & roof of "unknown"
-// build new house and insert in neighborhood if good
