@@ -8,23 +8,7 @@ let house = {
 }
 
 let neighborhood = [
-  house,
-  {
-    exterior: "brick",
-    roof: "galvanized aluminum",
-    bedrooms: 4,
-    bathrooms: 2,
-    sqft: 1700,
-    hasYard: true
-  },
-  {
-    exterior: "river rock",
-    roof: "asphalt shingle",
-    bedrooms: 1,
-    bathrooms: 1,
-    sqft: 800,
-    hasYard: false
-  }
+  house
 ]
 
 for(let i=0; i<neighborhood.length;i++){
@@ -50,3 +34,52 @@ function build(obj, container){
   // append "house" div to container
   container.appendChild(div)
 }
+
+// New form submission handler
+const form = document.querySelector("form")
+
+form.addEventListener("submit", function(event){
+  event.preventDefault()
+
+  let errorMessages = ""
+
+  let newRoof = this.roof.value
+  if(newRoof === ""){
+    newRoof = "unknown"
+  }
+  let newExterior = this.exterior.value
+  if(newExterior === ""){
+    newExterior = "uknown"
+  }
+
+  let newBathrooms = parseFloat(this.bathrooms.value)
+  if(isNaN(newBathrooms) || newBathrooms > 5 || newBathrooms < 1){
+    errorMessages = errorMessages + "Number of bathrooms must be a number between 1 and 5"
+  }
+
+  let newBedrooms = parseInt(this.bedrooms.value)
+  if(isNaN(newBedrooms) || newBedrooms > 5 || newBedrooms < 1){
+    errorMessages = errorMessages + " Number of bedrooms must be a number between 1 and 5"
+  }
+
+  let newSqft = parseInt(this.sqft.value)
+  if(isNaN(newSqft)){
+    errorMessages = errorMessages + " Square Footage is required"
+  }
+
+  let newHasYard = this.hasYard.value
+  if(newHasYard === ""){
+    errorMessages = errorMessages + " Has Yard is required"
+  } else {
+    newHasYard = newHasYard === "true"
+  }
+
+  console.log(errorMessages)
+
+})
+
+// validate fields, numbers not negative, are numbers
+// sqft & hasYard required
+// rooms <= 5
+// default value for exterior & roof of "unknown"
+// build new house and insert in neighborhood if good
