@@ -36,12 +36,17 @@ for(let i=0; i<neighborhood.length;i++){
 }
 
 function build(obj, container){
+  let div = document.createElement("div")
+  div.classList.add("house")
+
   for (let key in obj){
     // create a nice paragraph
     let p = document.createElement("p")
     p.innerHTML = key + ": " + obj[key]
 
-    // append it to the body
-    container.appendChild(p)
+    // append it to the "house" div
+    div.appendChild(p)
   }
+  // append "house" div to container
+  container.appendChild(div)
 }
