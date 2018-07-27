@@ -14,12 +14,77 @@
       margin: auto;
       display: inline-block;
     }
+    form {
+      background-color: aliceblue;
+      margin-bottom: 4rem;
+      padding: 1rem;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 1rem auto;
+    }
+    fieldset {
+      max-width: 50%;
+      margin: auto;
+    }
   </style>
 </head>
 <body>
   <h1>There Goes the Neighborhood</h1>
 
   <div id="container"></div>
+
+  <form name="newHouse">
+
+  <label>Exterior:
+    <input type="text" name="exterior">
+  </label>
+
+  <label>Roof:
+    <input type="text" name="roof">
+  </label>
+
+  <label>Number of Bedrooms:
+    <input type="number" name="bedrooms">
+  </label>
+
+  <label>Number of Bathrooms:
+    <input type="number" name="bathrooms">
+  </label>
+
+  <label>Square Footage (approximate):
+    <fieldset>
+      <label>
+        <input type="radio" name="sqft" value="900">
+        900
+      </label>
+      <label>
+        <input type="radio" name="sqft" value="1400">
+        1400
+      </label>
+      <label>
+        <input type="radio" name="sqft" value="2500">
+        2500
+      </label>
+    </fieldset>
+  </label>
+
+  <label>Has a Yard:
+    <fieldset>
+      <label>
+        <input type="radio" name="hasYard" value="true">
+        Yes
+      </label>
+      <label>
+        <input type="radio" name="hasYard" value="false">
+        No
+      </label>
+    </fieldset>
+  </label>
+
+  <input type="submit" value="Build It!">
+</form>
 
   <script src="script.js"></script>
 </body>
